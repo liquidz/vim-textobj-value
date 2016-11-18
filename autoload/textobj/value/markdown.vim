@@ -1,9 +1,9 @@
-function! textobj#value#asciidoc#parse(line) abort
-  if matchstr(a:line, '^=\+') != ''
+function! textobj#value#markdown#parse(line) abort
+  if matchstr(a:line, '^#\+') != ''
     " header
-    let head = matchstrpos(a:line, '\v[^= ]')[1] + 1
+    let head = matchstrpos(a:line, '\v[^# ]')[1] + 1
     return [head, textobj#value#get_tail(a:line, head)]
-  elseif matchstr(a:line, '^*\+ ') != ''
+  elseif matchstr(a:line, '\s*\* ') != ''
     " list
     let head = matchstrpos(a:line, '\v[^* ]')[1] + 1
     return [head, textobj#value#get_tail(a:line, head)]
